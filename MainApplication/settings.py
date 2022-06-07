@@ -29,7 +29,8 @@ App_Install =[
     'accounts.apps.AccountsConfig',
     'orders.apps.OrdersConfig',
     'products.apps.ProductsConfig',
-    'inventory.apps.InventoryConfig'
+    'inventory.apps.InventoryConfig',
+    'pos_manager.apps.PosManagerConfig'
 ]
 
 Third_Party = [
@@ -146,7 +147,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_DIRS = [STATIC_DIR,]
 
 # Media

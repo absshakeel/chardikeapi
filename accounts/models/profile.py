@@ -25,7 +25,8 @@ class UserPermission(InitModels):
 
 # User profile 
 class Profile(InitModels):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', 
+        null=True)
 
     # username=models.CharField(max_length=264, blank=True)
     full_name=models.CharField(max_length=264, blank=True,null=True)
@@ -42,7 +43,7 @@ class Profile(InitModels):
     
 
     def __str__(self):
-        return self.user.email 
+        return self.full_name
 
     
     class Meta:
