@@ -152,7 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/workspace/'
 MEDIA_ROOT = MEDIA_DIR
 
 # Default primary key field type
