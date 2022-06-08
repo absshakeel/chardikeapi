@@ -10,8 +10,10 @@ from django.core.management.utils import get_random_secret_key
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_DIR=os.path.join(BASE_DIR,'static')
-MEDIA_DIR=os.path.join(BASE_DIR,'media')
-
+# MEDIA_DIR=os.path.join(BASE_DIR,'media')
+MEDIA_DIR = (
+    BASE_DIR / 'media'
+)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
@@ -149,7 +151,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_DIRS = [STATIC_DIR,]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media
 
