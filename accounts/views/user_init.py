@@ -15,6 +15,8 @@ from django.contrib.auth import authenticate
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 
+from MainApplication.scripts.phone_verification import SMS_of_Phone_Verification
+
 # importing API
 from accounts.serializers.user_auth import LoginSerializer
 from accounts.serializers.profileAPI import (
@@ -59,9 +61,9 @@ class LoginView(GenericAPIView):
                     'fullName':user.profile.full_name
                 })
             else:
-                return Response({'Error':'Sorry Password mismatch'})
+                return Response({'Error':'Sorry Password mismatch'},status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
-            return Response({'Error':'Sorry, Credentials Not match!'})
+            return Response({'Error':'No such User Found'},status=status.HTTP_204_NO_CONTENT)
 
 
 # User Profile view 
@@ -147,8 +149,29 @@ class RegisterView(GenericAPIView):
                 return Response(apifetch.errors)
 
             
-        
+## Send SMS 
+class SendSMS(GenericAPIView):
+
+    def get(self,request):
+        phone = "01309192698"
+        number = f"88{phone}"
+        profile_ID = 1
+        SMS_of_Phone_Verification(number,profile_ID).start()
+        return Response({'Success':'Sens'})
+
             
+## Verfify OTP through phone
+class VerifyOTP(GenericAPIView):
+    def post(self,request,profile_ID):
+        profile = Profile.objects.get(id=profile_ID)
+        get_otp = request.data.get('otp')
+        if profile.phone_otp == get_otp :
+            profile.is_phone_verified = True
+            profile.is_active = True
+            profile.save()
+            return Response({"Success":"OTP Matched"},status=status.HTTP_200_OK)
+        else:
+            return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
             
 
 

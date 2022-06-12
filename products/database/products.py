@@ -4,6 +4,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from accounts.models.initials import InitModels
+from django.db.models import Sum,Count
+
 
 
 '''
@@ -121,30 +123,33 @@ class Products(InitModels):
         return sub_category
 
 
+    @property
+    def review_star_count(self):
+        # review count by star
+        sum_count = self.reviews.aggregate(Sum('star_count'))['star_count__sum']
+        total_count = self.reviews.aggregate(Count('star_count'))['star_count__count']
+        if sum_count is None:
+            return sum_count == 0 
+        else: 
+            avg_count = '{0:.2g}'.format(sum_count/total_count)
+            return avg_count
+
+
+    @property
+    def review_comment_count(self):
+        # review count by comment
+        comment_count = self.reviews.count()
+        return comment_count
+
+
 # product images 
 class Product_images(InitModels):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, 
+    product = models.ForeignKey('products.Products', on_delete=models.CASCADE, 
         related_name='product_image')
     image=models.ImageField(upload_to='product_image_gallery', blank=True)
     
-    class Meta:
-        verbose_name_plural = _("product images")
 
     class Meta:
         verbose_name_plural = "Product Image"
 
 
-# Product Reviews
-class ProductReview(InitModels):
-    profile = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
-        verbose_name='Profile Name')
-    product = models.ForeignKey(Products,on_delete=models.CASCADE,null=True)
-    star_count = models.IntegerField(null=True)
-    review = models.TextField(null=True,blank=True)
-
-
-    def __str__(self):
-        return self.review
-
-    class Meta:
-        verbose_name_plural = "Product Review"
