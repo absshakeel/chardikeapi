@@ -8,8 +8,8 @@ from django.core.management.utils import get_random_secret_key
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_DIR=os.path.join(BASE_DIR,'static')
-MEDIA_DIR=os.path.join(BASE_DIR,'media')
+# STATIC_DIR=os.path.join(BASE_DIR,'static')
+# MEDIA_DIR=os.path.join(BASE_DIR,'media')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
@@ -143,23 +143,19 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static", # os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = BASE_DIR / "static"
-from .cdn.conf import *
 
-# Media
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn" # in production, we want cdn
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = MEDIA_DIR
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+MEDIA_ROOT = BASE_DIR / "staticfiles-cdn" / "media"
+
+from .cdn.conf import * # noqa
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
