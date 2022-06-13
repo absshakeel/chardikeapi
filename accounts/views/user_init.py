@@ -116,7 +116,8 @@ class RegisterView(GenericAPIView):
                 apifetch.validated_data['user'] = user
                 apifetch.validated_data['phone'] = ''          
                 apifetch.save()
-                return Response({'Success':'Profile is created'})
+                return Response({'Success':'Profile is created'},
+                status=status.HTTP_201_CREATED)
             else:
                 return Response(apifetch.errors)
         
@@ -144,7 +145,13 @@ class RegisterView(GenericAPIView):
                      user.save()
                 apifetch.validated_data['user'] = user
                 apifetch.save()
-                return Response({'Success':'Profile is created'})
+                profile_ID=user.profile.id
+                SMS_of_Phone_Verification(get_phone_or_email,profile_ID).start()
+                getProfile = Profile.objects.get(id=profile_ID)
+                getProfile.is_active = False
+                getProfile.save()
+                return Response({'Success':'Profile is created','profile_ID':profile_ID},
+                status=status.HTTP_201_CREATED)
             else:
                 return Response(apifetch.errors)
 
@@ -153,17 +160,18 @@ class RegisterView(GenericAPIView):
 class SendSMS(GenericAPIView):
 
     def get(self,request):
-        phone = "01309192698"
+        phone = "01406616646"
         number = f"88{phone}"
         profile_ID = 1
         SMS_of_Phone_Verification(number,profile_ID).start()
-        return Response({'Success':'Sens'})
+        return Response({'Success':'Send'})
 
             
 ## Verfify OTP through phone
 class VerifyOTP(GenericAPIView):
-    def post(self,request,profile_ID):
-        profile = Profile.objects.get(id=profile_ID)
+    def post(self,request):
+        get_profile_ID = request.data.get('profile_ID')
+        profile = Profile.objects.get(id=get_profile_ID)
         get_otp = request.data.get('otp')
         if profile.phone_otp == get_otp :
             profile.is_phone_verified = True
@@ -174,4 +182,56 @@ class VerifyOTP(GenericAPIView):
             return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
             
 
+## Forget Password option with Phone 
+
+class ForgetPassword__with__Phone(GenericAPIView):
+    def get(self,request):
+        get_number = request.data.get('phone')
+        if Profile.objects.filter(phone=get_number):
+            getProfile_ID = Profile.objects.filter(phone=get_number).first().id
+            # print(getProfile_ID)
+            SMS_of_Phone_Verification(get_number,getProfile_ID).start()
+            
+            return Response({
+                'OK':'Number Is Found',
+                'profile_ID':getProfile_ID
+            },status=status.HTTP_200_OK)
+        else:
+            return Response({
+                'Error':'Number Didnt Found'
+            },status=status.HTTP_204_NO_CONTENT)
+    
+    def post(self,request):
+        get_profile_ID = request.data.get('profile_ID')
+        profile = Profile.objects.get(id=get_profile_ID)
+        get_otp = request.data.get('otp')
+        if profile.phone_otp == get_otp :
+            # profile.is_phone_verified = True
+            # profile.is_active = True
+            # profile.save()
+            return Response({"Success":"OTP Matched"},status=status.HTTP_200_OK)
+        else:
+            return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
+    
+    def put(self,request):
+        get_profileID = request.data.get('profile_ID')
+        if User.objects.filter(profile=get_profileID).first():
+            get_password = request.data.get('password1')
+            get_confirm_password = request.data.get('password2')
+            getUser = User.objects.get(profile=get_profileID)
+            getUser.password = make_password(get_password)
+            getUser.confirm_password = make_password(get_confirm_password)
+            getUser.save()
+            return Response({
+                'Success':'Password Updated !'
+            },status=status.HTTP_205_RESET_CONTENT)
+        else:
+            return Response({
+                'Error':'Profile Didn`t Match'
+            },status=status.HTTP_204_NO_CONTENT)
+
+        
+
+
+        
 
