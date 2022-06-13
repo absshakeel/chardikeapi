@@ -38,6 +38,7 @@ Third_Party = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'storages'
 ]
 
 Default_APPS = [
@@ -145,9 +146,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-STATIC_ROOT = STATIC_DIR
-STATIC_URL = 'static/'
-STATIC_DIRS = [STATIC_DIR,]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+STATIC_ROOT = BASE_DIR / "static"
+from .cdn.conf import *
 
 # Media
 
