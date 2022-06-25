@@ -31,8 +31,8 @@ App_Install =[
     'products.apps.ProductsConfig',
     'inventory.apps.InventoryConfig',
     'pos_manager.apps.PosManagerConfig',
-    'initapp.apps.InitappConfig'
-     'courier.apps.CourierConfig',
+    'initapp.apps.InitappConfig',
+    'courier.apps.CourierConfig',
 ]
 
 Third_Party = [
