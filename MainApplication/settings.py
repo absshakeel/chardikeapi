@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 import sys
@@ -32,8 +31,8 @@ App_Install =[
     'inventory.apps.InventoryConfig',
     'pos_manager.apps.PosManagerConfig',
     'initapp.apps.InitappConfig',
-    'courier.apps.CourierConfig'
-]
+    'courier.apps.CourierConfig',
+ ]
 
 Third_Party = [
     'rest_framework',
