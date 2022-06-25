@@ -1,3 +1,4 @@
+
 from pathlib import Path
 import os
 import sys
@@ -31,6 +32,7 @@ App_Install =[
     'inventory.apps.InventoryConfig',
     'pos_manager.apps.PosManagerConfig',
     'initapp.apps.InitappConfig'
+     'courier.apps.CourierConfig',
 ]
 
 Third_Party = [
@@ -39,7 +41,6 @@ Third_Party = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'courier',
     'storages',
 ]
 
