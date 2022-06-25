@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 import sys
@@ -40,7 +39,8 @@ Third_Party = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    'storages'
+    'courier',
+    'storages',
 ]
 
 Default_APPS = [
@@ -249,4 +249,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
