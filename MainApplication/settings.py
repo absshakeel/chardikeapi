@@ -32,6 +32,7 @@ App_Install =[
     'pos_manager.apps.PosManagerConfig',
     'initapp.apps.InitappConfig',
     'courier.apps.CourierConfig',
+    'blog.apps.BlogConfig',
  ]
 
 Third_Party = [
@@ -101,7 +102,26 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'ovhi',
+#         'USER': 'ovhi',
+#         'PASSWORD': 'AVNS_T0DQSOPjwSqd93oHAHw',
+#         'HOST': 'app-ebaccd04-8f86-4aec-bb4f-7d15dbc57b1a-do-user-11633337-0.b.db.ondigitalocean.com',
+#         'PORT': '25060',
+#     }
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'chardikedb',
+#         'USER': 'chardikedb',
+#         'PASSWORD': 'AVNS_2I7LY82FEvE3Fq77W_7',
+#         'HOST': 'db-postgresql-nyc1-03382-do-user-11633337-0.b.db.ondigitalocean.com',
+#         'PORT': '25060',
+#     }
+# }
 # if DEVELOPMENT_MODE is True:
 #     DATABASES = {
 #         "default": {
