@@ -96,12 +96,12 @@ WSGI_APPLICATION = 'MainApplication.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -112,16 +112,16 @@ DATABASES = {
 #         'PORT': '25060',
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'chardikedb',
-#         'USER': 'chardikedb',
-#         'PASSWORD': 'AVNS_2I7LY82FEvE3Fq77W_7',
-#         'HOST': 'db-postgresql-nyc1-03382-do-user-11633337-0.b.db.ondigitalocean.com',
-#         'PORT': '25060',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'chardikedb',
+        'USER': 'chardikedb',
+        'PASSWORD': 'AVNS_2I7LY82FEvE3Fq77W_7',
+        'HOST': 'db-postgresql-nyc1-03382-do-user-11633337-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
+    }
+}
 # if DEVELOPMENT_MODE is True:
 #     DATABASES = {
 #         "default": {
