@@ -9,11 +9,11 @@ from appFilter.views.products_filter import (
     SingleCategoryProducts,
     SingleBrandProducts,
     SingleCoutryProducts,
-    # PopularProductList,
-    # LatestProductList,
-    # TopSalesProductsListView, 
-    # DailySalesOrderTimeToTimeListView,
-    # DailyTotalSalesRevenue,
+    PopularProductList,
+    LatestProductList,
+    TopSalesProductsListView, 
+    DailySalesOrderTimeToTimeListView,
+    DailyTotalSalesRevenue,
 )
 
 
@@ -29,14 +29,14 @@ products_URL = [
     path('products/country/', ProductsUnderCountryView.as_view(), name='products-under-country'),
     path('products/country/<int:pk>/',SingleCoutryProducts.as_view()),
 
-    # path('popular-products/', PopularProductList.as_view()),
-    # path('latest-products/', LatestProductList.as_view()),
-    # path('top-sales-product/', TopSalesProductsListView.as_view()),
+    path('popular-products/', PopularProductList.as_view()),
+    path('latest-products/', LatestProductList.as_view()),
+    path('top-sales-product/', TopSalesProductsListView.as_view()),
 
-    # # path('low-to-high-price/', PriceLowToHighListView.as_view()),
-    # # path('high-to-low-price/', PriceHighToLowListView.as_view()),
-    # path('daily-sales/', DailySalesOrderTimeToTimeListView.as_view()),
-    # path('total-sales-price-daily/',DailyTotalSalesRevenue.as_view()),
+    # path('low-to-high-price/', PriceLowToHighListView.as_view()),
+    # path('high-to-low-price/', PriceHighToLowListView.as_view()),
+    path('daily-sales/', DailySalesOrderTimeToTimeListView.as_view()),
+    path('total-sales-price-daily/',DailyTotalSalesRevenue.as_view()),
 ]
 
 urlpatterns += products_URL
