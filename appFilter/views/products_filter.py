@@ -1,23 +1,23 @@
-# '''
-# Queries related to products goes in this file 
+'''
+Queries related to products goes in this file 
 
-# Frontend
-# ○ Products * 
-# ○ Category Based products*
-# ○ Brand Based Products*
-# ○ Country Based Products*
-# ○ Popular products* 
-# ○ Latest Products*
-# ○ Top Sales Products*
-# ○ Price (Low to Hight , High to Low)*
-# ○ Flash deal Based Product*
-# o Daily sales
-# o Weekly sales
-# o Monthly sales
+Frontend
+○ Products * 
+○ Category Based products*
+○ Brand Based Products*
+○ Country Based Products*
+○ Popular products* 
+○ Latest Products*
+○ Top Sales Products*
+○ Price (Low to Hight , High to Low)*
+○ Flash deal Based Product*
+o Daily sales
+o Weekly sales
+o Monthly sales
 
-# '''
+'''
 
-# # importing initials 
+# importing initials 
 
 from rest_framework import generics
 from django.db.models import Q
@@ -35,7 +35,7 @@ from appFilter.serializers import (
 )
 
 
-# # products Queries show ALL
+# products Queries show ALL
 
 class AllProductsView(generics.ListAPIView):
     queryset = Products.objects.all()
@@ -78,90 +78,90 @@ class SingleCoutryProducts(generics.RetrieveAPIView):
 
 
 
-# ## Popular Products  List
-#     '''
-#     - Filter by start Count
-#     - Filter by comment count 
-#     '''
+## Popular Products  List
+    '''
+    - Filter by start Count
+    - Filter by comment count 
+    '''
     
-# # class PopularProductsListView(generics.ListAPIView):
-# #     queryset = Products.objects.filter()
+# class PopularProductsListView(generics.ListAPIView):
+#     queryset = Products.objects.filter()
 
 
 
-# class Prouduct_by_review_count(generics.ListAPIView):
-#     serializer_class = ProductsAPI
+class Prouduct_by_review_count(generics.ListAPIView):
+    serializer_class = ProductsAPI
 
-#     def get_queryset(self):
-#         product_by_count = Products.objects.filter(is_active=True).order_by('-review_star_count')
-#         return product_by_count
+    def get_queryset(self):
+        product_by_count = Products.objects.filter(is_active=True).order_by('-review_star_count')
+        return product_by_count
 
-# '''
-# popular product logic by
-#     - star count
-#     - comment count 
+'''
+popular product logic by
+    - star count
+    - comment count 
 
-# '''
-# class PopularProductList(generics.ListAPIView):
-#     # queryset = Products.objects.filter(review_star_count__gte = 4.0).
-#     # filter(review_comment_count={})
-#     serializer_class = ProductsAPI
-#     def get_queryset(self):
-#         filtered = [x for x in Products.objects.all()\
-#              if x.review_star_count >= 4.0 \
-#                   and x.review_comment_count]
-#         print(filtered)
-#         return filtered
-
-
-# '''
-# latest product count logic
-#     - by created_at
-# '''
-# class LatestProductList(generics.ListAPIView):
-#     queryset = Products.objects.all().order_by('-created_at')[:20]
-#     serializer_class = ProductsAPI
+'''
+class PopularProductList(generics.ListAPIView):
+    # queryset = Products.objects.filter(review_star_count__gte = 4.0).
+    # filter(review_comment_count={})
+    serializer_class = ProductsAPI
+    def get_queryset(self):
+        filtered = [x for x in Products.objects.all()\
+             if x.review_star_count >= 4.0 \
+                  and x.review_comment_count]
+        print(filtered)
+        return filtered
 
 
-
-# '''
-# Top sales product logic
-#     - using sold_count field
-# '''
-# class TopSalesProductsListView(generics.ListAPIView):
-#     queryset = Products.objects.all().order_by('-sold_count')[:20]
-#     serializer_class = ProductsAPI
-
-
-# '''
-# Product low to high 
-#     - ordering by price
-
-# '''
-
-# '''
-# Daily sales logic
-# '''
-# import datetime
-
-# class DailySalesOrderTimeToTimeListView(generics.ListAPIView):
-#     queryset = Products.objects.filter(items__created_at=datetime.date.today(), 
-#     items__is_order=True
-#     )
-#     print(queryset)
-#     serializer_class = ProductsAPI
-
-# '''
-# Daily total sales price
-# '''
-# from django.db.models import Sum
-# class DailyTotalSalesRevenue(generics.ListAPIView):
-#     queryset = Products.objects.all().filter(items__created_at=datetime.date.today()).aggregate(total_sum=Sum('variant__selling_price'))
-#     serializer_class = ProductsAPI
+'''
+latest product count logic
+    - by created_at
+'''
+class LatestProductList(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-created_at')[:20]
+    serializer_class = ProductsAPI
 
 
-# '''
-# expenses 
-#     - model create
-#     - 
-# '''
+
+'''
+Top sales product logic
+    - using sold_count field
+'''
+class TopSalesProductsListView(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-sold_count')[:20]
+    serializer_class = ProductsAPI
+
+
+'''
+Product low to high 
+    - ordering by price
+
+'''
+
+'''
+Daily sales logic
+'''
+import datetime
+
+class DailySalesOrderTimeToTimeListView(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at=datetime.date.today(), 
+    items__is_order=True
+    )
+    print(queryset)
+    serializer_class = ProductsAPI
+
+'''
+Daily total sales price
+'''
+from django.db.models import Sum
+class DailyTotalSalesRevenue(generics.ListAPIView):
+    queryset = Products.objects.all().filter(items__created_at=datetime.date.today()).aggregate(total_sum=Sum('variant__selling_price'))
+    serializer_class = ProductsAPI
+
+
+'''
+expenses 
+    - model create
+    - 
+'''
