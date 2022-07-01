@@ -59,6 +59,7 @@ class LoginView(GenericAPIView):
             user = authenticate(username = match_data.username, password= password)
 
             if user:
+                
                 return Response({
                     'username':user.username,
                     'user_obj_ID':user.id,
