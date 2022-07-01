@@ -79,7 +79,7 @@ class LoginView(GenericAPIView):
 # User Profile view 
 
 class UserProfileView(APIView):
-    permission_classes=[IsCustomer]
+    # permission_classes=[IsCustomer]
 
     def get(self, request):
         serializer = UserProfileSeriliazer(request.user.profile)
