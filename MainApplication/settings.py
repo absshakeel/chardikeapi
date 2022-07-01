@@ -107,8 +107,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ovhi',
         'USER': 'ovhi',
-        'PASSWORD': 'AVNS_T0DQSOPjwSqd93oHAHw',
-        'HOST': 'app-ebaccd04-8f86-4aec-bb4f-7d15dbc57b1a-do-user-11633337-0.b.db.ondigitalocean.com',
+        'PASSWORD': 'AVNS_O82Vjza7nluBC5aESOd',
+        'HOST': 'app-85abfc44-322c-497e-89c0-3a9adcd80f9e-do-user-11633337-0.b.db.ondigitalocean.com',
         'PORT': '25060',
     }
 }
