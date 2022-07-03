@@ -9,6 +9,8 @@ This file contains followings
 
 
 from rest_framework.generics import GenericAPIView
+from rest_framework import generics
+
 from django.db.models import Q
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
@@ -22,7 +24,7 @@ from MainApplication.scripts.permission import (
 ) 
 
 # importing API
-from accounts.serializers.user_auth import LoginSerializer
+from accounts.serializers.user_auth import LoginSerializer, UserProfileListSeriliazer
 from accounts.serializers.profileAPI import (
     UserProfileSeriliazers
 )
@@ -59,7 +61,6 @@ class LoginView(GenericAPIView):
             user = authenticate(username = match_data.username, password= password)
 
             if user:
-                
                 return Response({
                     'username':user.username,
                     'user_obj_ID':user.id,
@@ -79,7 +80,7 @@ class LoginView(GenericAPIView):
 # User Profile view 
 
 class UserProfileView(APIView):
-    # permission_classes=[IsCustomer]
+    permission_classes=[IsCustomer]
 
     def get(self, request):
         serializer = UserProfileSeriliazer(request.user.profile)
@@ -305,3 +306,10 @@ class ChangePasswordInstant(GenericAPIView):
             return Response({
                 'Success':'Password has Been Updated'
             },status=status.HTTP_202_ACCEPTED)
+
+'''
+User profile list view
+'''
+class UserProfileList(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = UserProfileListSeriliazer
