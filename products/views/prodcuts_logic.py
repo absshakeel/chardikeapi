@@ -16,15 +16,15 @@ from products.database.products import Products, Variation_with_Price_variant
 from products.serializers.init_serializers import *
 from products.serializers.product_serializers import (
     ProductsSerializers,Product_imagesSerializer,
-    VariationAPI,VariationListAPI
+    VariationAPI,VariationListAPI,ProductListAPI
 )
  
 
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.all()
-    serializer_class = ProductsSerializers
+    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    serializer_class = ProductListAPI
 
 
 
@@ -56,6 +56,11 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductsSerializers
     lookup_field = 'slug'
 
+
+## Product Single View 
+class ProductSingleView(generics.RetrieveAPIView):
+    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    serializer_class = ProductListAPI
 
 # rendrer html form 
 # class ProductListViewSet(APIView):
@@ -145,6 +150,10 @@ class ProductVariationSingle_updateView(generics.UpdateAPIView):
 
 # Product Delete View
 class ProductVariation_DeleteView(generics.DestroyAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationListAPI
+
+class ProductVariationList(generics.ListAPIView):
     queryset = Variation_with_Price_variant.objects.all()
     serializer_class = VariationListAPI
 

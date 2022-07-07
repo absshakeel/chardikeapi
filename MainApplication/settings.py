@@ -29,9 +29,11 @@ App_Install =[
     'orders.apps.OrdersConfig',
     'products.apps.ProductsConfig',
     'inventory.apps.InventoryConfig',
-    'pos_manager.apps.PosManagerConfig',
+    #'pos_manager.apps.PosManagerConfig',
     'initapp.apps.InitappConfig',
     'courier.apps.CourierConfig',
+    'blog.apps.BlogConfig',
+    'pointsofsale_manager.apps.PointsofsaleManagerConfig',
  ]
 
 Third_Party = [
@@ -101,20 +103,39 @@ WSGI_APPLICATION = 'MainApplication.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ovhi',
+        'USER': 'ovhi',
+        'PASSWORD': 'AVNS_O82Vjza7nluBC5aESOd',
+        'HOST': 'app-85abfc44-322c-497e-89c0-3a9adcd80f9e-do-user-11633337-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
     }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'chardikedb',
+#         'USER': 'chardikedb',
+#         'PASSWORD': 'AVNS_2I7LY82FEvE3Fq77W_7',
+#         'HOST': 'db-postgresql-nyc1-03382-do-user-11633337-0.b.db.ondigitalocean.com',
+#         'PORT': '25060',
+#     }
+# }
+# if DEVELOPMENT_MODE is True:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+# elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+#     if os.getenv("DATABASE_URL", None) is None:
+#         raise Exception("DATABASE_URL environment variable not defined")
+#     DATABASES = {
+#         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+#     }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

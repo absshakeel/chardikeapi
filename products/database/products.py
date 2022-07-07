@@ -47,7 +47,7 @@ class Products(InitModels):
         related_name='Sub_category_products')
 
     product_name = models.CharField(
-        max_length=50, 
+        max_length=255, 
         null=True, 
         blank=True
         )
@@ -63,7 +63,7 @@ class Products(InitModels):
         max_length=1200, 
         null=True, 
         blank=True,
-        verbose_name='Short Description'
+        verbose_name='Short DesColorVariationcription'
         )
     long_description = models.TextField(
         null=True, 
@@ -75,11 +75,12 @@ class Products(InitModels):
         null=True, 
         blank=True
         )
-    # sku = models.CharField(
-    #     max_length=20,
-    #     unique=True,
-    #     verbose_name='SKU'
-    #     )
+    sku = models.CharField(
+        max_length=20,
+        unique=True,
+        verbose_name='SKU',
+        null=True
+        )
     # upc = models.CharField(
     #     max_length=12,
     #     unique=True,

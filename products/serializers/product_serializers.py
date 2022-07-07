@@ -7,13 +7,34 @@ from rest_framework import serializers
 
 # importing models
 from products.database.products import(
-    Products,ProductAttribute,Product_images,
+    Products,
+    Product_images,
     Variation_with_Price_variant
 )
 from products.database.init_p import(
-   ColorVariation,WeightVariation,SizeVariation
+   ColorVariation,
+   WeightVariation,
+   SizeVariation,
+   Categories,
+   Sub_Categories
+)
+from products.serializers.init_serializers import(
+    BrandSerializer,
+    CategoriesSerializers,
+    ProductReviewListAPI,
+    SubCategoriesListSerializers,
+    CountriesSerializer
 )
 
+from products.serializers.init_serializers import(
+     CategoriesSerializers, 
+     SubCategoriesListSerializers, 
+     BrandSerializer, 
+     CountriesSerializer
+)
+
+
+# class 
 
 ## Products API
 
@@ -72,17 +93,26 @@ Product API
 '''
 
 class ProductListAPI(serializers.ModelSerializer):
+    # add name fields views
+    # sub_category = serializers.CharField(source = 'get_sub_category',read_only=True)
+    # category = serializers.CharField(source='get_category',read_only=True)
+    category=CategoriesSerializers(many=True, read_only=True)
+    sub_category=SubCategoriesListSerializers(many=True, read_only=True)
+    #brand=BrandSerializer(many=True, read_only=True)
+    #country=CountriesSerializer(many=True, read_only=True)
     variant = VariationListAPI(many=True)
     product_image = Product_imagesSerializer(many=True)
+    reviews = ProductReviewListAPI(many=True)
 
     class Meta:
         model = Products
-        fields = ['id','brand','country',
+        fields = ['id','brand','country','sku',
                     'category','sub_category','product_name',
                     'slug','meta','short_descriptions',
                     'long_description','alter_text',
-                    'feature_image','product_image','sold_count','exprire_rate',
-                    'is_stock']
+                    'feature_image','product_image','sold_count','expire_rate',
+                    'is_stock','variant','reviews']
+        depth = 1
 
 
 

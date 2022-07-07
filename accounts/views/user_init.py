@@ -9,6 +9,8 @@ This file contains followings
 
 
 from rest_framework.generics import GenericAPIView
+from rest_framework import generics
+
 from django.db.models import Q
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
@@ -22,7 +24,7 @@ from MainApplication.scripts.permission import (
 ) 
 
 # importing API
-from accounts.serializers.user_auth import LoginSerializer
+from accounts.serializers.user_auth import LoginSerializer, UserProfileListSeriliazer
 from accounts.serializers.profileAPI import (
     UserProfileSeriliazers
 )
@@ -58,13 +60,22 @@ class LoginView(GenericAPIView):
         if match_data:
             user = authenticate(username = match_data.username, password= password)
 
+            
             if user:
-                return Response({
-                    'username':user.username,
-                    'user_obj_ID':user.id,
-                    'profile_ID':user.profile.id,
-                    'fullName':user.profile.full_name
-                })
+                if user.profile.is_active == False:
+
+                    return Response(
+                        {'Error':'Sorry User is not Active'},
+                        status=status.HTTP_406_NOT_ACCEPTABLE
+                    )
+                else:
+                    return Response({
+                        'username':user.username,
+                        'user_obj_ID':user.id,
+                        'profile_ID':user.profile.id,
+                        'fullName':user.profile.full_name
+                    })
+
             else:
                 return Response(
                     {'Error':'Sorry Password mismatch'},
@@ -304,3 +315,10 @@ class ChangePasswordInstant(GenericAPIView):
             return Response({
                 'Success':'Password has Been Updated'
             },status=status.HTTP_202_ACCEPTED)
+
+'''
+User profile list view
+'''
+class UserProfileList(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = UserProfileListSeriliazer
