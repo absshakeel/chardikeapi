@@ -106,10 +106,10 @@ WSGI_APPLICATION = 'MainApplication.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'defaultdb',
-        'USER': 'doadmin',
-        'PASSWORD': 'AVNS_gg_L33BWElLvX2ymqsI',
-        'HOST': 'chardikedb-do-user-11633337-0.b.db.ondigitalocean.com',
+        'NAME': 'db',
+        'USER': 'db',
+        'PASSWORD': 'AVNS_XxMQ9-vTz9ZO7utQtgM',
+        'HOST': 'app-51b814ef-78c9-4624-91ad-1e0febda52ed-do-user-11633337-0.b.db.ondigitalocean.com',
         'PORT': '25060',
     }
 }
