@@ -106,13 +106,14 @@ WSGI_APPLICATION = 'MainApplication.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ovhi',
-        'USER': 'ovhi',
-        'PASSWORD': 'AVNS_O82Vjza7nluBC5aESOd',
-        'HOST': 'app-85abfc44-322c-497e-89c0-3a9adcd80f9e-do-user-11633337-0.b.db.ondigitalocean.com',
+        'NAME': 'defaultdb',
+        'USER': 'doadmin',
+        'PASSWORD': 'AVNS_gg_L33BWElLvX2ymqsI',
+        'HOST': 'chardikedb-do-user-11633337-0.b.db.ondigitalocean.com',
         'PORT': '25060',
     }
 }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
