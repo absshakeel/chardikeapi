@@ -7,7 +7,7 @@ AWS_S3_ENDPOINT_URL="https://sgp1.digitaloceanspaces.com"
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
-AWS_LOCATION = "https://chardike.sgp1.digitaloceanspaces.com"
+AWS_LOCATION = "https://chardikestorage.sgp1.digitaloceanspaces.com"
 
 DEFAULT_FILE_STORAGE = "MainApplication.cdn.backends.MediaRootS3Boto3Storage"
 STATICFILES_STORAGE = "MainApplication.cdn.backends.StaticRootS3Boto3Storage"
