@@ -17,15 +17,34 @@ class Billing_Address_Serialiazer(serializers.ModelSerializer):
         model = BillingAddress
         fields = [
             'id',
+            'name',
+            'email',
+            'phone',
             'region',
             'city',
             'area',
             'post_code',
-            'address'
+            'address',
+            'is_biling'
         ]
 
 
+''' Shipping Address Serializers '''
 
+# class Shipping_Address_Serialiazer(serializers.ModelSerializer):
+#     class Meta:
+#         model = ShippingAddress
+#         fields = [
+#             'id',
+#             'name',
+#             'email',
+#             'phone',
+#             'region',
+#             'city',
+#             'area',
+#             'post_code',
+#             'address'
+#         ]
 
 
    

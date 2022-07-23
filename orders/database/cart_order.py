@@ -106,7 +106,7 @@ class Order(InitModels):
     is_order = models.BooleanField(default=False,null=True)
     
     # new add delivery status 
-    first_deliverry = models.BooleanField(default=False)
+    fast_delivery = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.customer)
@@ -140,3 +140,7 @@ class Order(InitModels):
     #     super().save(*args, **kwargs)
 
 
+
+'''
+shipping address foreingkey need
+'''
