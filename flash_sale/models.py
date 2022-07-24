@@ -1,3 +1,46 @@
-from django.db import models
 
-# Create your models here.
+
+'''
+This file contains the database of 
+    Flash Sale
+'''
+
+from django.db import models
+from accounts.models.initials import InitModels
+
+class FlashSale(InitModels):
+    name = models.CharField(
+        max_length=500,null=True,verbose_name="Flash Sale Name",blank=True
+        )
+    discount = models.PositiveIntegerField(
+        null=True,blank=True,verbose_name="Flash Discount"
+    )
+    start_time = models.DateTimeField(
+        null=True,auto_created=False,verbose_name="Start Time"
+        )
+    end_time = models.DateTimeField(
+        null=True,auto_created=False,verbose_name="End Time"
+    )
+    products = models.ManyToManyField(
+        'products.Products', related_name='flash_products'
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Flash Deal"
+
+    ## Customer Property 
+    @property
+    def flash_products(self):
+        products = [product.id for product in self.products.all()]    
+        return products
+    ## Override the Save method 
+    # def save(self,*args,**kwargs):
+    #     for product in self.products.all():
+    #         print(product)
+    #     super(FlashSale, self).save(*args, **kwargs) 
+
+    
+        

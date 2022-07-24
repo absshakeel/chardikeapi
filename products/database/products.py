@@ -81,7 +81,8 @@ class Products(InitModels):
         max_length=20,
         unique=True,
         verbose_name='SKU',
-        null=True
+        null=True,
+        blank=True
         )
     # upc = models.CharField(
     #     max_length=12,
@@ -108,6 +109,9 @@ class Products(InitModels):
     sold_count = models.IntegerField(null=True,blank=True)
     expire_date = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
+    is_in_flash_sale = models.BooleanField(
+        default=False,verbose_name="Is this Product in Flash Sale"
+    )
 
 
     def __str__(self) -> str:
@@ -158,6 +162,22 @@ class Products(InitModels):
             return True
         else:
             return False
+
+    # Quantity property 
+    '''
+    this func will show the total quantity of products 
+    '''
+    @property
+    def product_quantity(self):
+        if self.purchase_product:
+            # if product has purhcase history then show the quantity 
+            # else return 0.00
+            return self.purchase_product.\
+                    aggregate(Sum('quantity'))['quantity__sum']
+        else:
+            return f"0.00"
+
+
 
 
 ## Product Variation with Price and variant 
