@@ -1,0 +1,262 @@
+.blog{
+    padding-top: 125px;
+}
+
+.blognav{
+    border-bottom: 2px solid #F85A36;
+    margin-bottom: 30px;
+}
+
+.blognav ul{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.blognav ul a{
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.active{
+    background-color: #F85A36;
+    color: #fff;
+}
+
+
+
+/* timeLine Item  */
+
+.timelineBox{
+    padding: 10px;
+}
+
+.timelinePost{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.input input{
+    outline: none;
+    border-radius: 30px;
+    width: 400px;
+}
+
+
+.timelineItem{
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.blogImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blogItemContent{
+    padding: 15px;
+}
+
+.title{
+    height: 43px;
+}
+
+.title h3{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.user h3{
+    font-size: 17px;
+    font-weight: 500;
+    flex: 5;
+}
+
+.userImg{
+    flex: 1;
+}
+
+.userImg img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.topuserImg img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.timelineItem:hover .title h3{
+    color: #F85A36;
+}
+
+
+/* Modal */
+.Modal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 99999999;
+}
+
+.modalBox{
+    width: 900px;
+    height: 750px;
+    background-color: #fff;
+    margin: auto;
+    padding: 30px 80px;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
+
+.ModaltimelineItem{
+    overflow: scroll;
+    height: 100%;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.userName{
+    margin-left: 60px;
+}
+
+.userName h5{
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.dec p{
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-color);
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* .ModaltimelineItem{
+    width: 100%;
+    height: 650px;
+} */
+
+.ModaltimelineItem img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.Modaltitle h3{
+    font-size: 25px;
+}
+
+
+
+/* input Modal */
+
+.inputModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    z-index: 888888;
+}
+
+.inputModalItem{
+    width: 500px;
+    height: 500px;
+    background-color: #fff;
+    margin: auto;
+    margin-top: 100px;
+    padding: 40px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.topInput{
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+.textarea{
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+
+.inputModalItem button{
+    padding: 8px 20px;
+    border: none;
+    outline: none;
+    background-color: #F85A36;
+    border-radius: 10px;
+}
+
+.upImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.upImg input{
+    margin-left: 70px;
+}
+
+.upImg img{
+    width: 150px;
+    height: 100px;
+}
+
+.Inputclose{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.error{
+    color: red;
+    margin: 0;
+    padding: 0;
+}
+
+.close a:hover{
+    color: red;
+}
