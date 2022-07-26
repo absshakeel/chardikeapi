@@ -33,6 +33,7 @@ App_Install =[
     'courier.apps.CourierConfig',
     'blog.apps.BlogConfig',
     'pointsofsale_manager.apps.PointsofsaleManagerConfig',
+    'flash_sale.apps.FlashSaleConfig',
  ]
 
 Third_Party = [
