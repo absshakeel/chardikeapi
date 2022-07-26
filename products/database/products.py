@@ -102,16 +102,13 @@ class Products(InitModels):
     #     )
     attribute = models.CharField(max_length=1000, null=True, blank=True)
     
-    regular_price = models.FloatField(null=True,blank=True)
-    selling_price = models.FloatField(null=True,blank=True)
-    reseller_price = models.FloatField(null=True, blank=True)
+    regular_price = models.FloatField(default=0)
+    selling_price = models.FloatField(default=0)
+    reseller_price = models.FloatField(default=0)
     
-    sold_count = models.IntegerField(null=True,blank=True)
+    sold_count = models.IntegerField( default=0)
     expire_date = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
-    is_in_flash_sale = models.BooleanField(
-        default=False,verbose_name="Is this Product in Flash Sale"
-    )
 
 
     def __str__(self) -> str:

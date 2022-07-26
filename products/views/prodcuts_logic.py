@@ -5,7 +5,7 @@ This file contains the Business logics of the followings
 - Products Attribute (Create , Update , view , Delete)
 - Product Images (Create , Update , view , Delete)
 '''
-from django.shortcuts import redirect
+
 from rest_framework import generics
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
@@ -22,7 +22,8 @@ from products.serializers.product_serializers import (
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.prefetch_related('product_image','reviews')
+    queryset = Products.objects.prefetch_related('product_image','reviews').\
+        exclude(flash_product__is_active=True)
     serializer_class = ProductListAPI
 
 
