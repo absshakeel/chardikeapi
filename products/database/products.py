@@ -106,6 +106,8 @@ class Products(InitModels):
     selling_price = models.FloatField(default=0)
     reseller_price = models.FloatField(default=0)
     
+    stock_count = models.IntegerField(default=0) ## Hidden data 
+
     sold_count = models.IntegerField( default=0)
     expire_date = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
@@ -166,13 +168,29 @@ class Products(InitModels):
     '''
     @property
     def product_quantity(self):
-        if self.purchase_product:
-            # if product has purhcase history then show the quantity 
-            # else return 0.00
+        if self.purchase_product.first() is None:
+            # self.stock_count = 0
+            return 0
+        elif self.purchase_product == 0 :
+            self.stock_count = 0
+            return 0
+            # self.save()
+        else:
             return self.purchase_product.\
                     aggregate(Sum('quantity'))['quantity__sum']
+
+    @property
+    def total_quantity (self):
+        ## Check if product quantity is 0 or check
+        ## if stock count is greater then product quantity 
+        if self.product_quantity < self.stock_count \
+            or self.product_quantity == 0:
+            return 0
         else:
-            return f"0.00"
+            quantity = self.product_quantity - self.stock_count
+            return quantity
+
+
 
 
 

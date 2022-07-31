@@ -11,6 +11,9 @@ from products.database.slider import(
 from products.database.reviews import (
     ProductReview
 )
+from products.database.feature_product import (
+    Banner,BannerProduct
+)
 
 admin.site.register(Categories)
 admin.site.register(Sub_Categories)
@@ -23,6 +26,11 @@ admin.site.register(Products,ProductsAdmin)
 admin.site.register(ProductAttribute)
 admin.site.register(Product_images)
 admin.site.register(ProductReview)
+
+admin.site.register(Banner)
+class BannerProductAdmin(admin.ModelAdmin):
+    list_display = [ 'id','feature_product','is_active']
+admin.site.register(BannerProduct,BannerProductAdmin)
 
 class SliderAdmin(admin.ModelAdmin):
     list_display = ['id','slidername','position','home_shown']

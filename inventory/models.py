@@ -56,8 +56,8 @@ payment_status = (
 class Purchase(InitModels):
     ref_code = models.CharField(max_length=100,null=True,blank=True,verbose_name=
         "Reference Number")
-    batch_no = models.CharField(max_length=100,null=True,blank=True,verbose_name=
-        "Batch No")
+    # batch_no = models.CharField(max_length=100,null=True,blank=True,verbose_name=
+    #     "Batch No")
     date_of_purchase = models.DateField(auto_now_add=False,null=True,blank=True,
         verbose_name="Date of Purchase")
     supplier = models.ForeignKey(Supplier,on_delete=models.SET_NULL,null=True,
@@ -85,7 +85,7 @@ class Purchase(InitModels):
 
 
     def __str__(self):
-        return self.ref_code
+        return str(self.product)
 
     class Meta:
         verbose_name_plural = "Purchase History"

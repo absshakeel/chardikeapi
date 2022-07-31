@@ -2,6 +2,7 @@
 from django.urls import path
 from products.views.prodcuts_logic import (
     ProductListViewSet,
+    # ProductListViewAdmin,
     ProductCreateView,
     ProductRetUpDesViewSet,
 
@@ -57,6 +58,21 @@ from products.views.slider_logic import (
 )
 
 
+from products.views.feature_products_logic import (
+    BannerProductListView,
+    BannerProductCreateView,
+    BannerProductUpdateView,
+    BannerProductDeleteView,
+
+    BannerListView,
+    BannerCreateView,
+    BannerSingleView,
+    BannerUpdateView,
+    BannerDeleteView,
+
+    # Filter_by,
+
+)
 
 urlpatterns = []
 
@@ -75,7 +91,11 @@ urlpatterns_category = [
 ]
 
 urlpatterns_product = [ 
+    
     path('product/', ProductListViewSet.as_view(), name='products' ),
+
+    # path('product/list/admin/view/', ProductListViewAdmin.as_view()),
+
     path('product/create/',ProductCreateView.as_view(), name='product_create' ),
     path('product/update-delete/<int:pk>/',ProductRetUpDesViewSet.as_view(), 
         name='products_delete_update' ),
@@ -120,6 +140,25 @@ urlpatterns_slider = [
     path('slider/delete/<int:pk>/',SliderDeleteView.as_view()),
 ]
 
+urlpatterns_banner_products = [ 
+    path('banner/products/list/',BannerProductListView.as_view()),
+    path('banner/product/create/',BannerProductCreateView.as_view()),
+    path('banner/product/update/view/<int:pk>/',BannerProductUpdateView.as_view()),
+    path('banner/product/delete/<int:pk>/',BannerProductDeleteView.as_view()),
+
+    path('banner/list/view/',BannerListView.as_view()),
+    path('banner/create/',BannerCreateView.as_view()),
+    path('banner/single/view/<int:pk>/',BannerSingleView.as_view()),
+    path('banner/update/view/<int:pk>/',BannerUpdateView.as_view()),
+    path('banner/delete/<int:pk>/',BannerDeleteView.as_view()),
+
+
+    # path('filter/by/<int:bannerID>/',Filter_by.as_view()),
+
+
+
+
+]
 # urlpatterns_attribute = [
 #     path('color/',ColorVariationListAPIview.as_view()),
 #     path('color/<int:pk>/',ColorVariationSingleAPIview.as_view()),
@@ -138,3 +177,4 @@ urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
 urlpatterns += urlpatterns_productsReview
 urlpatterns += urlpatterns_slider
+urlpatterns += urlpatterns_banner_products
