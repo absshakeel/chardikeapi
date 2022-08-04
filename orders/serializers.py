@@ -23,7 +23,7 @@ class CouponAPI(serializers.ModelSerializer):
         fields = [
             'id','coupon_name','coupon_type',
             'coupon_amount','free_shipping',
-            'expire_date','minimum_user',
+            'expire_date','maximum_user',
             'minimum_sale','maximum_sale',
             'category','brand','product'
         ]
@@ -83,5 +83,5 @@ class OrderAPI(serializers.ModelSerializer):
                 'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
                 'total','order_status','is_order',
-                'mobile','email','fast_delivery'
+                'mobile','email','fast_delivery','created_at','payment_complete'
                 ]

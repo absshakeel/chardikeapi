@@ -30,17 +30,18 @@ class Coupon(InitModels):
     free_shipping = models.BooleanField(default=False,null=True,
         verbose_name="Free Shipping Allow ?")
     expire_date = models.DateField(null=True,blank=True,auto_now_add=False)
-    minimum_user = models.IntegerField(default=0,null=True,blank=True,verbose_name=
-        "Minimum Users")
+    maximum_user = models.IntegerField(default=0,null=True,blank=True,verbose_name=
+        "Maximum Users")
     minimum_sale = models.IntegerField(null=True,blank=True,verbose_name=
         "Minimum Sale")
     maximum_sale = models.IntegerField(null=True,blank=True,verbose_name=
         "Maximum Sale")
-
+    coupon_count = models.PositiveIntegerField(default=0)
+    
     # field added manytomany 
-    category = models.ManyToManyField(Categories)
-    brand  = models.ManyToManyField(Brand)
-    product = models.ManyToManyField(Products)
+    category = models.ManyToManyField(Categories, blank=True)
+    brand  = models.ManyToManyField(Brand, blank=True)
+    product = models.ManyToManyField(Products, blank=True)
 
     def __str__(self):
         return str(self.coupon_name)
@@ -49,5 +50,6 @@ class Coupon(InitModels):
         verbose_name_plural = "Coupon"
         app_label = "orders"
 
+    
 
 

@@ -112,6 +112,9 @@ class Order(InitModels):
     # new add delivery status 
     fast_delivery = models.BooleanField(default=False)
 
+    user_device = models.CharField(max_length=255, null=True,blank=True)
+    user_browser = models.CharField(max_length=255, null=True,blank=True)
+
     def __str__(self):
         return str(self.customer)
 
@@ -143,6 +146,16 @@ class Order(InitModels):
 
     #     super().save(*args, **kwargs)
 
+
+    # custom property 
+    # @property
+    # def coupon_count(self):
+    #     c_count = 0
+    #     if self.coupon is not None:
+    #         c_count += 1
+    #         return c_count
+    #     else:
+    #         return c_count 
 
 
 '''

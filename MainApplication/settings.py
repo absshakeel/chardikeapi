@@ -34,6 +34,7 @@ App_Install =[
     'blog.apps.BlogConfig',
     'pointsofsale_manager.apps.PointsofsaleManagerConfig',
     'flash_sale.apps.FlashSaleConfig',
+    'revenue.apps.RevenueConfig',
  ]
 
 Third_Party = [

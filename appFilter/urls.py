@@ -36,13 +36,30 @@ from appFilter.views.expence_query import (
     HalfYearlyExpenceView,
     YearlyExpenceView,
 
+    hourly_expence_view,
+    twenty_4_hours_expence_view,
+    daily_expence_view,
+    monthly_expence_view,
+    half_yearly_expence_view,
+    yearly_expence_view,
+
 )
 
 from appFilter.views.sale_reports import (
     SaleReports_View
 )
 
-from appFilter.views.views_sales import passParams
+from appFilter.views.views_sales import (
+    passParams, 
+    last_24_hour_list,
+    hourly_View,
+    daily_view,
+    monthly_View,
+    half_yearly_View,
+    yearly_View
+    
+    )
+
 urlpatterns = []
 
 
@@ -74,7 +91,12 @@ products_URL = [
 ]
 
 sales_param_URL = [ 
-    path('sales/query/pass/params/', passParams.as_view()),
+    path('list/24/hours/', last_24_hour_list.as_view()),
+    path('hourly/', hourly_View.as_view()),
+    path('daily/', daily_view.as_view()),
+    path('monthly/', monthly_View.as_view()),
+    path('half/yearly/', half_yearly_View.as_view()),
+    path('yearly/', yearly_View.as_view()),
 ]
 
 expence_URL = [ 
@@ -85,9 +107,17 @@ expence_URL = [
     path('expence/half/yearly/',HalfYearlyExpenceView.as_view()),
     path('expence/yearly/',YearlyExpenceView.as_view()),
 ]
+expence_date_total_URL = [ 
+    path('expence/values/hour/',hourly_expence_view.as_view()),
+    path('expence/values/24/hours/',twenty_4_hours_expence_view.as_view()),
+    path('expence/values/daily/',daily_expence_view.as_view()),
+    path('expence/values/monthly/',monthly_expence_view.as_view()),
+    path('expence/values/half/yearly/',half_yearly_expence_view.as_view()),
+    path('expence/values/yearly/',yearly_expence_view.as_view()),
 
+]
 sales_reports_URL = [
-    path('sales/reports/',SaleReports_View.as_view())
+    path('sales/reports/',SaleReports_View.as_view()),
 ]
 
 
@@ -95,3 +125,4 @@ urlpatterns += sales_reports_URL
 urlpatterns += sales_param_URL
 urlpatterns += products_URL
 urlpatterns += expence_URL
+urlpatterns += expence_date_total_URL
