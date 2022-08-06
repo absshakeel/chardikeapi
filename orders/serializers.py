@@ -25,7 +25,7 @@ class CouponAPI(serializers.ModelSerializer):
             'coupon_amount','free_shipping',
             'expire_date','maximum_user',
             'minimum_sale','maximum_sale',
-            'category','brand','product'
+            'category','brand','product','coupon_count'
         ]
 
 
@@ -85,3 +85,16 @@ class OrderAPI(serializers.ModelSerializer):
                 'total','order_status','is_order',
                 'mobile','email','fast_delivery','created_at','payment_complete','updated_at'
                 ]
+
+
+
+
+'''
+Order api serializers 
+    -customer orders list view (admin)
+'''
+
+class CustomerOrdersViewAdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = "__all__"
