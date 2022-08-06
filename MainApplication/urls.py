@@ -45,13 +45,14 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('order/',include('orders.urls')),
     path('user/', include('accounts.urls')),
-    path('queries/',include('appFilter.urls')),
+    # path('queries/',include('appFilter.urls')),
     path('record/',include('inventory.urls')),
     path('contact/', include('initapp.urls')),
     path('blog/', include('blog.urls')),
     path('courier/', include('courier.urls')),
     path('pointsofsale/',include('pointsofsale_manager.urls')),
     path('flash-sale/',include('flash_sale.urls')),
+    path('revenue/',include('revenue.urls')),
 
     # configure the redoc setup
      #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
