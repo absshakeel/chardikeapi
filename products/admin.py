@@ -17,13 +17,16 @@ from products.database.feature_product import (
 from products.database.discount_products import (
     Discounts_product
 )
+from products.database.damage_products import (
+    DamageProducts,AddDamageProduct
+)
 
 admin.site.register(Categories)
 admin.site.register(Sub_Categories)
 admin.site.register(Brand)
 admin.site.register(Countreies)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ['id','product_name','review_star_count','review_comment_count','product_quantity']
+    list_display = ['id','product_name','review_star_count','review_comment_count','sold_count','product_quantity','total_quantity']
 admin.site.register(Products,ProductsAdmin)
 # admin.site.register(Variation_with_Price_variant)
 admin.site.register(ProductAttribute)
@@ -48,3 +51,14 @@ class DiscountProductsAdmin(admin.ModelAdmin):
     list_display = ['id','discount_product','price','is_active']
 
 admin.site.register(Discounts_product,DiscountProductsAdmin)
+
+# damage products add admin 
+class DamageProductsAddAdmin(admin.ModelAdmin):
+    lsit_display =  ['id','quantity','loss_per_unit','is_active']
+admin.site.register(AddDamageProduct,DamageProductsAddAdmin)
+
+# damage prodcts list 
+class DamageProductsAdmin(admin.ModelAdmin):
+    lsit_display =  ['id','ref','total_loss','is_active']
+admin.site.register(DamageProducts,DamageProductsAdmin)
+

@@ -64,6 +64,15 @@ from products.views.discount_product_logic import (
     Discountproducts_Delete_view,
 )
 
+from products.views.damage_products_logic import (
+    AddDamageProductsView,
+    DamageProductsView,
+    DamageProductsListView,
+    DamageProductsUpdateView,
+    DamageProductsDeleteeView,
+    DamageProductsSingleView
+
+)
 urlpatterns = []
 
 
@@ -138,6 +147,17 @@ urlpatterns_discount_products = [
 
 ]
 
+urlpatterns_damage_products = [ 
+    path('damage/add/', AddDamageProductsView.as_view()),
+
+    path('damage/products/create/', DamageProductsView.as_view()),
+    path('damage/products/list/',DamageProductsListView.as_view()), 
+    path('damage/products/single/view/<int:pk>/',DamageProductsSingleView.as_view()),
+    path('damage/products/update/<int:pk>/',DamageProductsUpdateView.as_view()), 
+    path('damage/products/delete/<int:pk>/',DamageProductsDeleteeView.as_view()), 
+    
+]
+
 urlpatterns += urlpatterns_category
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
@@ -145,3 +165,5 @@ urlpatterns += urlpatterns_productsReview
 urlpatterns += urlpatterns_slider
 urlpatterns += urlpatterns_banner_products
 urlpatterns += urlpatterns_discount_products
+
+urlpatterns += urlpatterns_damage_products
