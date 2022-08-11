@@ -59,6 +59,8 @@ class AddOrderItem(GenericAPIView):
             add_item.save()
             get_product = Products.objects.get(id=add_item.item_id)
             # print(get_product)
+            get_product.sold_count += int(item['quantity'])
+            # print("sold count:",get_product.sold_count)
             get_product.stock_count += int(item['quantity'])
             get_product.save()
 
@@ -81,7 +83,7 @@ class OrderView(GenericAPIView):
             apifetch.save()
 
             phone = apifetch.validated_data['mobile']
-            message = f"Your order received successfuly"
+            message = f"You have successfully created order at Chardike.com"
             SMS_for_Phone_Message(phone,message).start()
 
             return Response(
@@ -126,7 +128,7 @@ class OrderSingleView(generics.RetrieveAPIView):
 
 # admin view of custommer orders 
 class orderviewofcustomerAdminview(generics.ListAPIView):
-    queryset = Order.objects.filter(is_active=True) 
+    queryset = Order.objects.filter(is_active=True).order_by('-created_at') 
     serializer_class = CustomerOrdersViewAdminSerializer
     permission_classes = [IsAdmin]
 
