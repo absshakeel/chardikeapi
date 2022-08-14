@@ -64,3 +64,4 @@ def Create_ref_code(sender,instance,created,*args,**kwargs):
             instance.save()
         except Exception as e:
             print(e)
+

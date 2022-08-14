@@ -28,6 +28,7 @@ ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
 sqlparse==0.4.2
 uritemplate==4.1.1
+sslcommerz-lib==1.0
 urllib3==1.26.9
 django-storages==1.12.3
 boto3==1.24.7
