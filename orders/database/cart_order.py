@@ -44,6 +44,7 @@ DELIVERY_OPTIONS = (
     ('Dhaka Slow Delivery','Dhaka Slow Delivery'),
     ('Cash On Delivery', 'Cash On Delivery'),
     ('Sundarban', 'Sundarban'),
+    ('Free Shipping', 'Free Shipping'),
 )
 
 
