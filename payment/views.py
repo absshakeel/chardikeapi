@@ -22,12 +22,20 @@ from rest_framework.decorators import api_view
 
 class payment(APIView):
     def get(self, request, format = None):
-       
+        settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
+        sslcommez = SSLCOMMERZ(settings)
+
         customer = request.user.profile
         order = Order.objects.filter(customer=customer, payment_complete=False).last()
 
+        addr1 = str(order.address_shipping.city)
+        addr2 = str(order.address_shipping.area) 
+
+        addr = str(addr1 + ', ' + addr2)
+
         total_amount = order.total
         print(total_amount)
+
         tran_id = unique_tran_id_generate
 
         reverse_url1 = request.build_absolute_uri(reverse('success_payment'))
@@ -51,10 +59,10 @@ class payment(APIView):
         post_body['emi_option'] = 0
         post_body['cus_name'] = customer.full_name
         post_body['cus_email'] = 'example@gmail.com'
-        post_body['cus_phone'] = customer.phone
-        post_body['cus_add1'] = customer.address
-        post_body['cus_city'] = customer.city
-        post_body['cus_country'] = customer.country
+        post_body['cus_phone'] = order.mobile
+        post_body['cus_add1'] = addr
+        post_body['cus_city'] = addr1
+        post_body['cus_country'] = ""
         post_body['shipping_method'] = "NO"
         post_body['multi_card_name'] = ""
         post_body['num_of_item'] = 1
@@ -71,9 +79,6 @@ class payment(APIView):
 @api_view(['POST'])
 @csrf_exempt 
 def payment_success(request):
-
-    settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
 
     if request.method == 'POST' or request.method == 'post':
         payment_data = request.POST
