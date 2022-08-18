@@ -22,7 +22,7 @@ class CartProduct(InitModels):
 
 ORDER_STATUS = (
     ("Pending","Pending"),
-    ("Received", "Received"),
+    ("Confirmed", "Confirmed"),
     ("Shipped", "Shipped"),
 
     ("On Hold", "On Hold"),
@@ -44,7 +44,6 @@ DELIVERY_OPTIONS = (
     ('Dhaka Slow Delivery','Dhaka Slow Delivery'),
     ('Cash On Delivery', 'Cash On Delivery'),
     ('Sundarban', 'Sundarban'),
-    ('Free Shipping', 'Free Shipping'),
 )
 
 
