@@ -144,6 +144,14 @@ class TopSalesProductsListView(generics.ListAPIView):
     serializer_class = ProductsAPI
 
 
+import datetime
+tday = datetime.date.today()
+
+class HopSalesProductsDailyListView(generics.ListAPIView):
+    queryset = Products.objects.filter(items__is_active=True, created_at__gte=tday).order_by('-sold_count')[:20]
+    serializer_class = ProductsAPI
+
+
 '''
 Daily sales logic
 '''
@@ -227,4 +235,3 @@ import datetime
 #         queryset = Order.objects.filter(created_at__gte = now - \
 #             timedelta(days=365)).aggregate(total_sum=Sum('total'))
 #         return Response(queryset)
-
